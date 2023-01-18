@@ -11,7 +11,7 @@ function promptUser() {
     do {
         squares = prompt("Input how many squares you want on each side! It must be 100 and less!");
     }
-    while (squares >= 100);
+    while (squares > 100);
 
     // Remove all the divs
     divs = document.querySelectorAll('.grid-item');
