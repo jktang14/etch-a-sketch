@@ -14,4 +14,15 @@ function changeColor(e) {
 
 item.forEach((element) => element.addEventListener('mouseover', changeColor));
 
+input = document.querySelector('button');
+
+function promptUser() {
+    do {
+        squares = prompt("Input how many squares you want on each side! It must be less than 100!");
+    }
+    while (squares >= 100);
+}
+
+input.addEventListener('click', promptUser);
+
 
