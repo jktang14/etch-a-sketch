@@ -25,6 +25,8 @@ button:hover {
     height: 600px;
     width: 600px;
     margin: 0 auto;
+    border: 3px solid black;
+    box-shadow: 0 0 50px yellow;
 }
 
 .grid-item {
