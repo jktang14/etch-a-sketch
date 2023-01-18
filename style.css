@@ -18,12 +18,16 @@ button:hover {
 
 .container {
     display: grid;
-    grid-template-columns: repeat(16, 5vh);
-    grid-template-rows: repeat(16, 5vh);
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
     justify-content: center;
     align-content: center;
+    height: 600px;
+    width: 600px;
+    margin: 0 auto;
 }
 
 .grid-item {
     border: 3px solid black;
+    aspect-ratio: 1;
 }
