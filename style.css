@@ -28,6 +28,6 @@ button:hover {
 }
 
 .grid-item {
-    border: 3px solid black;
+    border: 1px solid black;
     aspect-ratio: 1;
 }
