@@ -55,17 +55,26 @@ function repeat() {
             let value2 = Math.floor(Math.random() * 256);
             let value3 = Math.floor(Math.random() * 256);
             this.style.backgroundColor = `rgb(${value1}, ${value2}, ${value3})`;
+            this.style.opacity = 1;
         }
     }
     else {
-        color = `rgb(255,255,255)`;
+        function changeColor(e) {
+            this.style.backgroundColor = `rgb(0,0,0)`;
+            this.count += 1
+            this.style.opacity = 0.1 * this.count;
+        }
     }
     function changeColor(e) {
         // Random RGB values
         this.style.backgroundColor = color;
+        this.style.opacity = 1;
     }
     
-    item.forEach((element) => element.addEventListener('mouseover', changeColor));
+    item.forEach((element) => {
+        element.count = 0;
+        element.addEventListener('mouseover', changeColor);
+    });
     }
 }
 
