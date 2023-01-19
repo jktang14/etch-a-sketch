@@ -5,7 +5,7 @@ for (let i = 0; i < 256; i++) {
     container.appendChild(cells);
 }
 
-input = document.querySelector('button');
+input = document.querySelector('.dimensions');
 // Prompt user when button is clicked
 function promptUser() {
     do {
@@ -30,27 +30,43 @@ function handleInput() {
         cells.classList.add('grid-item');
         container.appendChild(cells);
     }
-
-    check();
+    repeat();
 }
 input.addEventListener('click', handleInput);
 
-// Gives node list of grid items
-function check() {
+mixed = document.querySelector(".rainbow");
+selected = document.querySelector("input");
+shade = document.querySelector(".black");
+
+function repeat() {
+    // Gives node list of grid items
     item = document.querySelectorAll(".grid-item");
-    value1 = Math.floor(Math.random() * 256)
-    value2 = Math.floor(Math.random() * 256)
-    value3 = Math.floor(Math.random() * 256)
+    mixed.addEventListener('click', setValue);
+    selected.addEventListener('input', setValue);
+    shade.addEventListener('click', setValue);
+    function setValue(event) {
+    let answer = this.classList.value;
+    if (answer === "choose") {
+        color = event.target.value;
+    }
+    else if (answer === "rainbow") {
+        function changeColor(e) {
+            let value1 = Math.floor(Math.random() * 256);
+            let value2 = Math.floor(Math.random() * 256);
+            let value3 = Math.floor(Math.random() * 256);
+            this.style.backgroundColor = `rgb(${value1}, ${value2}, ${value3})`;
+        }
+    }
+    else {
+        color = `rgb(255,255,255)`;
+    }
     function changeColor(e) {
         // Random RGB values
-        value1 = Math.floor(Math.random() * 256)
-        value2 = Math.floor(Math.random() * 256)
-        value3 = Math.floor(Math.random() * 256)
-        this.style.backgroundColor = `rgb(${value1}, ${value2}, ${value3})`;
-        console.log(this.style);
+        this.style.backgroundColor = color;
     }
     
     item.forEach((element) => element.addEventListener('mouseover', changeColor));
+    }
 }
 
-check();
+repeat();
