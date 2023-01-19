@@ -35,9 +35,15 @@ input.addEventListener('click', promptUser);
 // Gives node list of grid items
 function check() {
     item = document.querySelectorAll(".grid-item");
-
+    value1 = Math.floor(Math.random() * 256)
+    value2 = Math.floor(Math.random() * 256)
+    value3 = Math.floor(Math.random() * 256)
     function changeColor(e) {
-        this.style.backgroundColor = "rgb(218, 87, 87)";
+        // Random RGB values
+        value1 = Math.floor(Math.random() * 256)
+        value2 = Math.floor(Math.random() * 256)
+        value3 = Math.floor(Math.random() * 256)
+        this.style.backgroundColor = `rgb(${value1}, ${value2}, ${value3})`;
     }
     
     item.forEach((element) => element.addEventListener('mouseover', changeColor));
