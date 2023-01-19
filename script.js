@@ -30,7 +30,7 @@ function handleInput() {
         cells.classList.add('grid-item');
         container.appendChild(cells);
     }
-    repeat();
+    run();
 }
 input.addEventListener('click', handleInput);
 
@@ -41,9 +41,11 @@ shade = document.querySelector(".black");
 function repeat() {
     // Gives node list of grid items
     item = document.querySelectorAll(".grid-item");
+
     mixed.addEventListener('click', setValue);
     selected.addEventListener('input', setValue);
     shade.addEventListener('click', setValue);
+
     function setValue(event) {
     let answer = this.classList.value;
     if (answer === "choose") {
@@ -78,4 +80,17 @@ function repeat() {
     }
 }
 
-repeat();
+function base() {
+    item = document.querySelectorAll(".grid-item");
+    item.forEach((element) => {
+        element.addEventListener('mouseover', (e) => e.target.style.backgroundColor = "black");
+    });
+}
+
+function run() {
+    base();
+    repeat();   
+}
+
+run()
+
