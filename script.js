@@ -6,17 +6,21 @@ for (let i = 0; i < 256; i++) {
 }
 
 input = document.querySelector('button');
-
+// Prompt user when button is clicked
 function promptUser() {
     do {
         squares = prompt("Input how many squares you want on each side! It must be 100 and less!");
     }
     while (squares > 100);
+    return squares;
+}
 
+function handleInput() {
     // Remove all the divs
+    squares = promptUser();
     divs = document.querySelectorAll('.grid-item');
     divs.forEach((element) => container.removeChild(element));
-
+    
     container.style.gridTemplateColumns = `repeat(${squares}, 1fr)`;
     container.style.gridTemplateRows = `repeat(${squares}, 1fr)`;
 
@@ -29,8 +33,7 @@ function promptUser() {
 
     check();
 }
-
-input.addEventListener('click', promptUser);
+input.addEventListener('click', handleInput);
 
 // Gives node list of grid items
 function check() {
@@ -44,6 +47,7 @@ function check() {
         value2 = Math.floor(Math.random() * 256)
         value3 = Math.floor(Math.random() * 256)
         this.style.backgroundColor = `rgb(${value1}, ${value2}, ${value3})`;
+        console.log(this.style);
     }
     
     item.forEach((element) => element.addEventListener('mouseover', changeColor));
