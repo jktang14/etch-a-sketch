@@ -5,7 +5,6 @@ for (let i = 0; i < 256; i++) {
     container.appendChild(cells);
 }
 
-input = document.querySelector('.dimensions');
 // Prompt user when button is clicked
 function promptUser() {
     do {
@@ -14,6 +13,8 @@ function promptUser() {
     while (squares > 100);
     return squares;
 }
+
+input = document.querySelector('.dimensions');
 
 function handleInput() {
     // Remove all the divs
@@ -38,21 +39,24 @@ mixed = document.querySelector(".rainbow");
 selected = document.querySelector("input");
 shade = document.querySelector(".black");
 
-function repeat() {
-    // Gives node list of grid items
-    item = document.querySelectorAll(".grid-item");
+// Change color when button is clicked
+function ChangeColor() {
+    mixed.addEventListener('click', setColor);
+    selected.addEventListener('input', setColor);
+    shade.addEventListener('click', setColor);
+}
 
-    mixed.addEventListener('click', setValue);
-    selected.addEventListener('input', setValue);
-    shade.addEventListener('click', setValue);
-
-    function setValue(event) {
+function setColor(event) {
     let answer = this.classList.value;
     if (answer === "choose") {
         color = event.target.value;
+        function draw(e) {
+            this.style.backgroundColor = color;
+            this.style.opacity = 1;
+        }
     }
     else if (answer === "rainbow") {
-        function changeColor(e) {
+        function draw(e) {
             let value1 = Math.floor(Math.random() * 256);
             let value2 = Math.floor(Math.random() * 256);
             let value3 = Math.floor(Math.random() * 256);
@@ -61,23 +65,20 @@ function repeat() {
         }
     }
     else {
-        function changeColor(e) {
+        function draw(e) {
             this.style.backgroundColor = `rgb(0,0,0)`;
-            this.count += 1
-            this.style.opacity = 0.1 * this.count;
+            count = +this.dataset.count;
+            count += 1;
+            this.style.opacity = 0.1 * count;
+            this.dataset.count = count;
         }
     }
-    function changeColor(e) {
-        // Random RGB values
-        this.style.backgroundColor = color;
-        this.style.opacity = 1;
-    }
-    
+    // start drawing when mouse is hovered
+    item = document.querySelectorAll(".grid-item");
     item.forEach((element) => {
-        element.count = 0;
-        element.addEventListener('mouseover', changeColor);
+        element.dataset.count = 0;
+        element.addEventListener('mouseover', draw);
     });
-    }
 }
 
 function base() {
@@ -89,7 +90,7 @@ function base() {
 
 function run() {
     base();
-    repeat();   
+    ChangeColor();   
 }
 
 run()
